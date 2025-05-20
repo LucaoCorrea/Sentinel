@@ -8,17 +8,16 @@ import com.springboot.sentinel.model.User;
 import com.springboot.sentinel.security.JwtUtil;
 import com.springboot.sentinel.service.UserService;
 
-import io.micrometer.core.ipc.http.HttpSender.Response;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Map;
 import java.util.Optional;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+
     private final UserService userService;
 
     public AuthController(UserService userService) {
@@ -27,7 +26,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Map<String, String> request) {
-        User user = userService.registerUser(request.get("username"), "email", "password");
+        User user = userService.registerUser(request.get("username"), request.get("email"), request.get("password"));
         return ResponseEntity.ok(user);
     }
 
@@ -40,5 +39,4 @@ public class AuthController {
         }
         return ResponseEntity.status(401).body("invalid credentials");
     }
-
 }
