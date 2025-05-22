@@ -2,8 +2,6 @@ package com.springboot.sentinel.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.springboot.sentinel.model.Patient;
 import com.springboot.sentinel.repository.PatientRepository;

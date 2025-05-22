@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.sentinel.model.PatientExam;
 import com.springboot.sentinel.service.PatientExamService;
@@ -20,12 +21,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@Controller
+@RestController
 @RequestMapping("/api/patient-exams")
 @RequiredArgsConstructor
-@Data
 public class PatientExamController {
-    private PatientExamService patientExamService;
+    private final PatientExamService patientExamService;
 
     @PostMapping("/register")
     public ResponseEntity<PatientExam> registerExam(

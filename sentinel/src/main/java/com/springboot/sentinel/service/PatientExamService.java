@@ -12,7 +12,6 @@ import com.springboot.sentinel.repository.ExamRepository;
 import com.springboot.sentinel.repository.PatientExamRepository;
 import com.springboot.sentinel.repository.PatientRepository;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @Service
