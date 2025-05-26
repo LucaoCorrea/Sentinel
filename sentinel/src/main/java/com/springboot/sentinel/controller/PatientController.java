@@ -1,5 +1,6 @@
 package com.springboot.sentinel.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
 
 @RestController
 @RequestMapping("/api/patients")
@@ -42,6 +42,11 @@ public class PatientController {
     @DeleteMapping("/{id}")
     public void delPatient(@PathVariable Long id) {
         patientService.delPatient(id);
+    }
+
+    @PostMapping("{id}/credits")
+    public Patient upgradeCredits(@PathVariable Long id, BigDecimal credits) {
+        return patientService.upgradeCredits(id, credits);
     }
 
 }
