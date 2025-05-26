@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.sentinel.model.PatientExam;
+import com.springboot.sentinel.request.RegisterExamRequest;
 import com.springboot.sentinel.service.PatientExamService;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,13 +26,12 @@ public class PatientExamController {
     private final PatientExamService patientExamService;
 
     @PostMapping("/register")
-    public ResponseEntity<PatientExam> registerExam(
-            @RequestParam Long patientId,
-            @RequestParam Long examId,
-            @RequestParam String examDate) {
-
-        LocalDate parsedDate = LocalDate.parse(examDate);
-        PatientExam savedExam = patientExamService.registerExam(patientId, examId, parsedDate);
+    public ResponseEntity<PatientExam> registerExam(@RequestBody RegisterExamRequest request) {
+        LocalDate parsedDate = LocalDate.parse(request.getExamDate());
+        PatientExam savedExam = patientExamService.registerExam(
+                request.getPatientId(),
+                request.getExamId(),
+                parsedDate);
 
         return ResponseEntity.ok(savedExam);
     }

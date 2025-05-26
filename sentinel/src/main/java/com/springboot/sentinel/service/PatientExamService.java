@@ -39,7 +39,6 @@ public class PatientExamService {
         patientExam.setPatient(patient);
         patientExam.setExam(exam);
         patientExam.setExamDate(localDate);
-        patientExam.setDischarge(false);
 
         return patientExamRepository.save(patientExam);
 
