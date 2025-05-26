@@ -14,20 +14,22 @@ import com.springboot.sentinel.repository.PatientRepository;
 
 import lombok.RequiredArgsConstructor;
 
+
 @Service
 @RequiredArgsConstructor
 public class PatientExamService {
 
-    private PatientRepository patientRepository;
-    private ExamRepository examRepository;
-    private PatientExamRepository patientExamRepository;
+    private final PatientRepository patientRepository;
+    private final ExamRepository examRepository;
+    private final PatientExamRepository patientExamRepository;
 
-    public PatientExam registerExam(Long PatientId, Long ExamId, LocalDate localDate) {
-        Patient patient = patientRepository.findById(PatientId)
+    public PatientExam registerExam(Long patientId, Long examId, LocalDate localDate) {
+        Patient patient = patientRepository.findById(patientId)
                 .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
 
-        Exam exam = examRepository.findById(ExamId)
+        Exam exam = examRepository.findById(examId)
                 .orElseThrow(() -> new RuntimeException("Exame não encontrado"));
+
         if (patient.getCredits().compareTo(exam.getPrice()) < 0) {
             throw new RuntimeException("Créditos insuficientes");
         }
@@ -41,7 +43,6 @@ public class PatientExamService {
         patientExam.setExamDate(localDate);
 
         return patientExamRepository.save(patientExam);
-
     }
 
     public List<PatientExam> getExamsByPatient(Long patientId) {
