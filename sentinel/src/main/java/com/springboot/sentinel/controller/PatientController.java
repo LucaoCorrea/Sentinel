@@ -2,10 +2,10 @@ package com.springboot.sentinel.controller;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,7 +45,8 @@ public class PatientController {
     }
 
     @PostMapping("{id}/credits")
-    public Patient upgradeCredits(@PathVariable Long id, BigDecimal credits) {
+    public Patient upgradeCredits(@PathVariable Long id, @RequestBody Map<String, BigDecimal> body) {
+        BigDecimal credits = body.get("credits");
         return patientService.upgradeCredits(id, credits);
     }
 

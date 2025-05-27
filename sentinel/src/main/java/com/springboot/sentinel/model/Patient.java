@@ -36,6 +36,6 @@ public class Patient {
     @Column(unique = false, nullable = true)
     private String address;
 
-    @Column(unique = false, nullable = false)
+    @Column(unique = false, nullable = true)
     private BigDecimal credits;
 }

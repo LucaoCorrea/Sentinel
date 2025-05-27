@@ -1,6 +1,5 @@
 package com.springboot.sentinel.model;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;

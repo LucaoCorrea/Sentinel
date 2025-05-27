@@ -3,7 +3,6 @@ package com.springboot.sentinel.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.springboot.sentinel.controller.PatientController;
 import com.springboot.sentinel.model.Patient;
 import com.springboot.sentinel.repository.PatientRepository;
 
