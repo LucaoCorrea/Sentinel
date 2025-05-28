@@ -1,20 +1,37 @@
 package com.springboot.sentinel.service;
 
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springboot.sentinel.model.CoPatient;
+import com.springboot.sentinel.model.Patient;
 import com.springboot.sentinel.repository.CoPatientRepository;
+import com.springboot.sentinel.repository.PatientRepository;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class CoPatientService {
 
     @Autowired
     private CoPatientRepository coPatientRepository;
+    private PatientRepository patientRepository;
 
-    public CoPatient saveCoPatient(CoPatient coPatient) {
+    public CoPatient saveCoPatient(CoPatient coPatient, Long patientId) {
+
+        Patient patient = patientRepository.findById(patientId)
+                .orElseThrow(() -> new RuntimeException("Paciente titular não encontrado"));
+
+        coPatient.setPatient(patient);
+
         return coPatientRepository.save(coPatient);
+    }
+
+    public List<CoPatient> listByPatientId(Long patientId) {
+        return coPatientRepository.findByPatientId(patientId);
     }
 
 }
