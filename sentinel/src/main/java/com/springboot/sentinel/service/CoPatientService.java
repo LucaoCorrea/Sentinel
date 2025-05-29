@@ -2,7 +2,6 @@ package com.springboot.sentinel.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springboot.sentinel.model.CoPatient;
@@ -10,6 +9,7 @@ import com.springboot.sentinel.model.Patient;
 import com.springboot.sentinel.repository.CoPatientRepository;
 import com.springboot.sentinel.repository.PatientRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -22,8 +22,9 @@ public class CoPatientService {
     public CoPatient saveCoPatient(CoPatient coPatient, Long patientId) {
 
         Patient patient = patientRepository.findById(patientId)
-                .orElseThrow(() -> new RuntimeException("Paciente titular não encontrado"));
+                .orElseThrow(() -> new EntityNotFoundException("Fornecedor titular não encontrado"));
 
+        System.out.println("ID antes de salvar: " + coPatient.getId());
         coPatient.setPatient(patient);
 
         return coPatientRepository.save(coPatient);

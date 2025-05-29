@@ -1,6 +1,5 @@
 package com.springboot.sentinel.model;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 

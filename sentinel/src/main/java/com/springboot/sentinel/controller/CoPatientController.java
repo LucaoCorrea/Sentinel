@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @RestController
 @RequestMapping("/api/copatients")
@@ -25,9 +23,10 @@ public class CoPatientController {
 
     private final CoPatientService coPatientService;
 
-   @PostMapping("/register/{patientId}")
+    @PostMapping("/register/{patientId}")
     public ResponseEntity<CoPatient> register(@RequestBody CoPatient coPatient, @PathVariable Long patientId) {
         CoPatient saved = coPatientService.saveCoPatient(coPatient, patientId);
+        System.out.println("ID antes de salvar: " + coPatient.getId());
         return ResponseEntity.ok(saved);
     }
 
@@ -35,5 +34,5 @@ public class CoPatientController {
     public ResponseEntity<List<CoPatient>> getByPatient(@PathVariable Long patientId) {
         return ResponseEntity.ok(coPatientService.listByPatientId(patientId));
     }
-    
+
 }
