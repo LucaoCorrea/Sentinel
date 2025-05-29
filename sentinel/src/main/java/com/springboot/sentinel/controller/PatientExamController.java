@@ -4,33 +4,38 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.springboot.sentinel.model.PatientExam;
 import com.springboot.sentinel.request.RegisterExamRequest;
 import com.springboot.sentinel.service.PatientExamService;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/patient-exams")
 @RequiredArgsConstructor
 public class PatientExamController {
-    private final PatientExamService patientExamService;
 
-    @PostMapping("/register")
-    public ResponseEntity<PatientExam> registerExam(@RequestBody RegisterExamRequest request) {
+    private final PatientExamService patientExamService;/*  */
+
+    @PostMapping("/register/patient")
+    public ResponseEntity<PatientExam> registerExamForPatient(@RequestBody RegisterExamRequest request) {
         LocalDate parsedDate = LocalDate.parse(request.getExamDate());
-        PatientExam savedExam = patientExamService.registerExam(
+        PatientExam savedExam = patientExamService.registerExamForPatient(
                 request.getPatientId(),
                 request.getExamId(),
                 parsedDate);
+        return ResponseEntity.ok(savedExam);
+    }
 
+    @PostMapping("/register/copatient")
+    public ResponseEntity<PatientExam> registerExamForCoPatient(@RequestBody RegisterExamRequest request) {
+        LocalDate parsedDate = LocalDate.parse(request.getExamDate());
+        PatientExam savedExam = patientExamService.registerExamForCoPatient(
+                request.getCoPatientId(),
+                request.getExamId(),
+                parsedDate);
         return ResponseEntity.ok(savedExam);
     }
 
@@ -40,4 +45,9 @@ public class PatientExamController {
         return ResponseEntity.ok(exams);
     }
 
+    @GetMapping("/copatient/{coPatientId}")
+    public ResponseEntity<List<PatientExam>> getExamsByCoPatient(@PathVariable Long coPatientId) {
+        List<PatientExam> exams = patientExamService.getExamsByCoPatient(coPatientId);
+        return ResponseEntity.ok(exams);
+    }
 }

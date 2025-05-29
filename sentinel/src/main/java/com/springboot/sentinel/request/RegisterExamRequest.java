@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class RegisterExamRequest {
     private Long patientId;
+    private Long coPatientId;
     private Long examId;
     private String examDate;
 }
