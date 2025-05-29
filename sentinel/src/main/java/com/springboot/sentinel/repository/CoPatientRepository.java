@@ -9,5 +9,5 @@ import com.springboot.sentinel.model.CoPatient;
 
 @Repository
 public interface CoPatientRepository extends JpaRepository<CoPatient, Long> {
-    List<CoPatient> findByPatientId(Long patientId);
+    List<CoPatient> findByPatient_Id(Long patientId);
 }

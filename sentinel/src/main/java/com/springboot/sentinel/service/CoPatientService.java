@@ -16,9 +16,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CoPatientService {
 
-    @Autowired
-    private CoPatientRepository coPatientRepository;
-    private PatientRepository patientRepository;
+    private final CoPatientRepository coPatientRepository;
+    private final PatientRepository patientRepository;
 
     public CoPatient saveCoPatient(CoPatient coPatient, Long patientId) {
 
@@ -31,7 +30,7 @@ public class CoPatientService {
     }
 
     public List<CoPatient> listByPatientId(Long patientId) {
-        return coPatientRepository.findByPatientId(patientId);
+        return coPatientRepository.findByPatient_Id(patientId);
     }
 
 }
