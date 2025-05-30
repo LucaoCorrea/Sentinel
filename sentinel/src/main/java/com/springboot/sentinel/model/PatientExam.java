@@ -36,6 +36,6 @@ public class PatientExam {
     @JoinColumn(name = "exam_id", nullable = false)
     private Exam exam;
 
-    @JoinColumn(name = "exam_date", nullable = false)
+    @Column(name = "exam_date", nullable = false)
     private LocalDate examDate;
 }

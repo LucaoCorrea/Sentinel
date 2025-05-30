@@ -1,5 +1,7 @@
 package com.springboot.sentinel.model;
 
+import com.springboot.sentinel.enums.CoPatientType;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,6 +28,9 @@ public class CoPatient {
     private String cpf;
 
     private String address;
+
+    @Enumerated(EnumType.STRING)
+    private CoPatientType type;
 
     @ManyToOne
     private Patient patient;

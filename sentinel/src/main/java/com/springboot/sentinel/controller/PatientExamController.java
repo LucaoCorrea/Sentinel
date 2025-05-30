@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PatientExamController {
 
-    private final PatientExamService patientExamService;/*  */
+    private final PatientExamService patientExamService;
 
     @PostMapping("/register/patient")
     public ResponseEntity<PatientExam> registerExamForPatient(@RequestBody RegisterExamRequest request) {

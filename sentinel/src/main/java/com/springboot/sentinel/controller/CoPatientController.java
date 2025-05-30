@@ -26,7 +26,6 @@ public class CoPatientController {
     @PostMapping("/register/{patientId}")
     public ResponseEntity<CoPatient> register(@RequestBody CoPatient coPatient, @PathVariable Long patientId) {
         CoPatient saved = coPatientService.saveCoPatient(coPatient, patientId);
-        System.out.println("ID antes de salvar: " + coPatient.getId());
         return ResponseEntity.ok(saved);
     }
 
