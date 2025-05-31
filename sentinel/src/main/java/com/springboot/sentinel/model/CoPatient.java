@@ -1,8 +1,10 @@
 package com.springboot.sentinel.model;
 
 import com.springboot.sentinel.enums.CoPatientType;
+import com.springboot.sentinel.validation.CPF;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Entity
@@ -25,6 +27,8 @@ public class CoPatient {
 
     private String phone;
 
+    @NotBlank(message = "CPF é obrigatório")
+    @CPF
     private String cpf;
 
     private String address;

@@ -24,6 +24,7 @@ public class CoPatientService {
         Patient patient = patientRepository.findById(patientId)
                 .orElseThrow(() -> new EntityNotFoundException("Fornecedor titular não encontrado"));
 
+
         coPatient.setPatient(patient);
 
         return coPatientRepository.save(coPatient);
