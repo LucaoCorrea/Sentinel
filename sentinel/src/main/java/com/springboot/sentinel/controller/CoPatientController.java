@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.springboot.sentinel.model.CoPatient;
 import com.springboot.sentinel.service.CoPatientService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,7 @@ public class CoPatientController {
     private final CoPatientService coPatientService;
 
     @PostMapping("/register/{patientId}")
-    public ResponseEntity<CoPatient> register(@RequestBody CoPatient coPatient, @PathVariable Long patientId) {
+    public ResponseEntity<CoPatient> register(@RequestBody @Valid CoPatient coPatient, @PathVariable Long patientId) {
         CoPatient saved = coPatientService.saveCoPatient(coPatient, patientId);
         return ResponseEntity.ok(saved);
     }

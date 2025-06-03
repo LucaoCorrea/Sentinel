@@ -2,6 +2,8 @@ package com.springboot.sentinel.model;
 
 import java.math.BigDecimal;
 
+import com.springboot.sentinel.validation.CPF;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,6 +33,7 @@ public class Patient {
     private String phone;
 
     @Column(unique = true, nullable = false)
+    @CPF
     private String cpf;
 
     @Column(unique = false, nullable = true)

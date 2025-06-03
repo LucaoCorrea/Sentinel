@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.springboot.sentinel.model.Patient;
 import com.springboot.sentinel.service.PatientService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,7 +27,7 @@ public class PatientController {
     private PatientService patientService;
 
     @PostMapping
-    public Patient savePatient(@RequestBody Patient patient) {
+    public Patient savePatient(@RequestBody @Valid Patient patient) {
         return patientService.savePatient(patient);
     }
 
