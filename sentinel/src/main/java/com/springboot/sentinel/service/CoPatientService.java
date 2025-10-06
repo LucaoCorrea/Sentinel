@@ -1,6 +1,5 @@
 package com.springboot.sentinel.service;
 
-import java.security.PublicKey;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -35,12 +34,4 @@ public class CoPatientService {
         return coPatientRepository.findByPatient_Id(patientId);
     }
 
-    public List<CoPatient> deleteById(Long coPatientId) {
-        coPatientRepository.deleteById(coPatientId);
-        return coPatientRepository.findAll();
-    }
-
-    public List<CoPatient> findAll() {
-        return coPatientRepository.findAll();
-    }
 }
