@@ -1,5 +1,7 @@
 package com.springboot.sentinel.model;
 
+import com.springboot.sentinel.enums.RoleEnum;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,10 +27,15 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-    public User(String username, String email, String password) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
+   @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private RoleEnum role;
 
+
+public User(String username, String email, String password, RoleEnum role) {
+    this.username = username;
+    this.email = email;
+    this.password = password;
+    this.role = role;
+}
 }

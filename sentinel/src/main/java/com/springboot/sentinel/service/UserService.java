@@ -2,9 +2,12 @@ package com.springboot.sentinel.service;
 
 import java.util.Optional;
 
+import javax.management.relation.Role;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.springboot.sentinel.enums.RoleEnum;
 import com.springboot.sentinel.model.User;
 import com.springboot.sentinel.repository.UserRepository;
 
@@ -18,9 +21,9 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User registerUser(String username, String email, String password) {
+    public User registerUser(String username, String email, String password, RoleEnum role) {
         String passwordCrypt = passwordEncoder.encode(password);
-        User user = new User(username, email, passwordCrypt);
+       User user = new User(username, email, passwordCrypt, role);
         return userRepository.save(user);
     }
 
