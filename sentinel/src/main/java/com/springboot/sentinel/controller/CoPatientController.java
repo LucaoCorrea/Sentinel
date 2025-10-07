@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api/copatients")
@@ -35,6 +37,12 @@ public class CoPatientController {
     public ResponseEntity<List<CoPatient>> getByPatient(@PathVariable Long patientId) {
         return ResponseEntity.ok(coPatientService.listByPatientId(patientId));
     }
+
+    @GetMapping("/by-patients/coPatient")
+    public ResponseEntity<List<CoPatient>> getAllCoPatient(){
+        return ResponseEntity.ok(coPatientService.findAll());
+    }
+    
 
     @DeleteMapping("/by-patient/{coPatientId}")
     public ResponseEntity<List<CoPatient>> deleteById(@PathVariable Long coPatientId) {

@@ -39,4 +39,8 @@ public class CoPatientService {
         coPatientRepository.deleteById(coPatientId);
         return coPatientRepository.findAll();
     }
+
+    public List<CoPatient> findAll() {
+        return coPatientRepository.findAll();
+    }
 }
