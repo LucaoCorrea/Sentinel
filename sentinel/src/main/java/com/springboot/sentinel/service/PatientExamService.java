@@ -93,4 +93,9 @@ public class PatientExamService {
     public List<PatientExam> getExamsByCoPatient(Long coPatientId) {
         return patientExamRepository.findByCoPatientId(coPatientId);
     }
+
+    public List<PatientExam> deletePatientExam(Long id) {
+        patientExamRepository.deleteById(id);
+        return patientExamRepository.findAll();
+    }
 }

@@ -50,4 +50,10 @@ public class PatientExamController {
         List<PatientExam> exams = patientExamService.getExamsByCoPatient(coPatientId);
         return ResponseEntity.ok(exams);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePatientExam(@PathVariable Long id) {
+        patientExamService.deletePatientExam(id);
+        return ResponseEntity.noContent().build();
+    }
 }
