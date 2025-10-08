@@ -9,7 +9,6 @@ import com.springboot.sentinel.security.JwtUtil;
 import com.springboot.sentinel.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Map;
@@ -29,7 +28,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Map<String, String> request) {
-        System.out.println("Role recebido: " + request.get("role")); // Adicione este log para debug
+        System.out.println("Role recebido: " + request.get("role"));
         RoleEnum role;
         try {
             role = RoleEnum.fromValue(request.get("role"));
@@ -65,7 +64,7 @@ public class AuthController {
                         "id", user.getId(),
                         "username", user.getUsername(),
                         "email", user.getEmail(),
-                        "role", user.getRole().name() // Retorna "ADMIN" ou "USER"
+                        "role", user.getRole().name()
                 ));
             }
         }

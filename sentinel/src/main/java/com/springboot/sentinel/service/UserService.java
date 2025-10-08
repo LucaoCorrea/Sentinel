@@ -2,8 +2,6 @@ package com.springboot.sentinel.service;
 
 import java.util.Optional;
 
-import javax.management.relation.Role;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
