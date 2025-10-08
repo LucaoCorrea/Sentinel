@@ -45,9 +45,21 @@ public class PatientExamController {
         return ResponseEntity.ok(exams);
     }
 
+    @GetMapping
+    public ResponseEntity<List<PatientExam>> getAllExams() {
+        List<PatientExam> exams = patientExamService.getAllExams();
+        return ResponseEntity.ok(exams);
+    }
+
     @GetMapping("/copatient/{coPatientId}")
     public ResponseEntity<List<PatientExam>> getExamsByCoPatient(@PathVariable Long coPatientId) {
         List<PatientExam> exams = patientExamService.getExamsByCoPatient(coPatientId);
         return ResponseEntity.ok(exams);
+    }
+
+    @DeleteMapping("/{examId}")
+    public ResponseEntity<Void> deleteExamById(@PathVariable Long examId) {
+        patientExamService.deleteExamById(examId);
+        return ResponseEntity.noContent().build();
     }
 }

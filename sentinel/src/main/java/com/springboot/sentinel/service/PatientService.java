@@ -28,11 +28,19 @@ public class PatientService {
         return patientRepository.findById(id);
     }
 
-    public void delPatient(Long id) {
-        patientRepository.deleteById(id);
+    public Patient deletePatient(Long id) {
+        Optional<Patient> optionalPatient = patientRepository.findById(id);
+
+        if (optionalPatient.isEmpty()) {
+            throw new RuntimeException("Paciente não encontrado: " + id);
+        }
+
+        Patient patient = optionalPatient.get();
+        patientRepository.delete(patient);
+        return patient;
     }
 
-    public Patient upgradeCredits(Long id, BigDecimal credits) {
+    public Patient updateCredits(Long id, BigDecimal credits) {
         Optional<Patient> optionalPatient = patientRepository.findById(id);
 
         if (optionalPatient.isEmpty()) {
@@ -40,8 +48,22 @@ public class PatientService {
         }
 
         Patient patient = optionalPatient.get();
-
+        credits = patient.getCredits().add(credits);
         patient.setCredits(credits);
+        return patientRepository.save(patient);
+    }
+
+    public Patient updatePatient(Long id, Patient patientDetails) {
+        Optional<Patient> optionalPatient = patientRepository.findById(id);
+
+        if (optionalPatient.isEmpty()) {
+            throw new RuntimeException("Paciente não encontrado: " + id);
+        }
+
+        Patient patient = optionalPatient.get();
+        patient.setName(patientDetails.getName());
+        patient.setEmail(patientDetails.getEmail());
+
         return patientRepository.save(patient);
     }
 }

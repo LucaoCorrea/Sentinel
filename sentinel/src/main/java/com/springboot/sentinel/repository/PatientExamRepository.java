@@ -13,4 +13,6 @@ public interface PatientExamRepository extends JpaRepository<PatientExam, Long> 
 
     List<PatientExam> findByCoPatientId(Long coPatientId);
 
+    List<PatientExam> findAll();
+
 }

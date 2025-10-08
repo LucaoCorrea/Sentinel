@@ -34,4 +34,12 @@ public class CoPatientService {
         return coPatientRepository.findByPatient_Id(patientId);
     }
 
+    public void deleteCoPatientById(Long coPatientId) {
+        if (!coPatientRepository.existsById(coPatientId)) {
+            throw new EntityNotFoundException("CoPaciente não encontrado");
+        }
+        coPatientRepository.deleteById(coPatientId);
+    }
+
 }
+

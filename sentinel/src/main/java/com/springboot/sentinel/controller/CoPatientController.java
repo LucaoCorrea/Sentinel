@@ -12,6 +12,7 @@ import com.springboot.sentinel.service.CoPatientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,6 +34,12 @@ public class CoPatientController {
     @GetMapping("/by-patient/{patientId}")
     public ResponseEntity<List<CoPatient>> getByPatient(@PathVariable Long patientId) {
         return ResponseEntity.ok(coPatientService.listByPatientId(patientId));
+    }
+
+    @DeleteMapping("/{coPatientId}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long coPatientId) {
+        coPatientService.deleteCoPatientById(coPatientId);
+        return ResponseEntity.noContent().build();
     }
 
 }

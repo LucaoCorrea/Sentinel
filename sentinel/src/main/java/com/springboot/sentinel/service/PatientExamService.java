@@ -93,4 +93,15 @@ public class PatientExamService {
     public List<PatientExam> getExamsByCoPatient(Long coPatientId) {
         return patientExamRepository.findByCoPatientId(coPatientId);
     }
+
+    public List<PatientExam> getAllExams() {
+        return patientExamRepository.findAll();
+    }
+
+    public void deleteExamById(Long examId) {
+        if (!patientExamRepository.existsById(examId)) {
+            throw new EntityNotFoundException("Exame do paciente não encontrado");
+        }
+        patientExamRepository.deleteById(examId);
+    }
 }

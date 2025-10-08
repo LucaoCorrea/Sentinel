@@ -15,6 +15,7 @@ import com.springboot.sentinel.service.PatientService;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,11 @@ public class PatientController {
         return patientService.savePatient(patient);
     }
 
+    @PutMapping("/{id}")
+    public Patient updatePatient(@PathVariable Long id, @RequestBody @Valid Patient patient) {
+        return patientService.updatePatient(id, patient);
+    }
+
     @GetMapping
     public List<Patient> listPatient() {
         return patientService.listPatients();
@@ -42,14 +48,14 @@ public class PatientController {
     }
 
     @DeleteMapping("/{id}")
-    public void delPatient(@PathVariable Long id) {
-        patientService.delPatient(id);
+    public void deletePatient(@PathVariable Long id) {
+        patientService.deletePatient(id);
     }
 
     @PostMapping("{id}/credits")
-    public Patient upgradeCredits(@PathVariable Long id, @RequestBody Map<String, BigDecimal> body) {
+    public Patient updateCredits(@PathVariable Long id, @RequestBody Map<String, BigDecimal> body) {
         BigDecimal credits = body.get("credits");
-        return patientService.upgradeCredits(id, credits);
+        return patientService.updateCredits(id, credits);
     }
 
 }
